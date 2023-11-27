@@ -1,0 +1,50 @@
+allprojects {
+    buildscript {
+        repositories {
+            mavenCentral()
+            gradlePluginPortal()
+        }
+
+        dependencies {
+            classpath("org.springframework.boot:spring-boot-dependencies:3.2.0")
+            classpath("com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin:8.1.1")
+            classpath("com.google.protobuf:protobuf-gradle-plugin:0.9.4")
+        }
+    }
+}
+
+
+subprojects {
+
+    apply {
+        plugin("java")
+    }
+
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+
+    java {
+        sourceCompatibility = '17'
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+        mavenCentral()
+
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.28'
+        annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+
+}

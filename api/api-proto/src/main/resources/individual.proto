@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package org.gxstar.randomdatatwo.api;
+
+import "google/protobuf/timestamp.proto";
+
+
+service IndividualService {
+  rpc streamIndividuals(IndividualRequest) returns (IndividualsResponseProto) {}
+  rpc getIndividualsCreatedBefore(TimeRequest) returns (IndividualsResponseProto) {}
+  rpc getIndividualsCreatedAfter(TimeRequest) returns (IndividualsResponseProto) {}
+}
+
+message IndividualRequest {
+
+}
+
+message IndividualsResponseProto {
+  repeated IndividualResponseProto items = 1;
+}
+
+message TimeRequest {
+  google.protobuf.Timestamp time = 1;
+}
+
+message IndividualResponseProto {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  int32 age = 4;
+  string gender = 5;
+  google.protobuf.Timestamp created_at = 6;
+}

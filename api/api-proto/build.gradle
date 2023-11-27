@@ -1,0 +1,4 @@
+def artifactName = "api-proto"
+shadowJar {
+    archiveBaseName.set("${artifactName}")
+}

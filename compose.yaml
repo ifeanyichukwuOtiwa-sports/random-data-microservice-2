@@ -1,0 +1,11 @@
+services:
+
+  individual-mysql:
+    image: 'mysql:latest'
+    hostname: individual-mysql
+    container_name: individual-mysql
+    environment:
+      MYSQL_DATABASE: random_individual
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - '23306:3306'

@@ -1,0 +1,4 @@
+def artifactName = "message-proto"
+shadowJar {
+    archiveBaseName.set("${artifactName}")
+}

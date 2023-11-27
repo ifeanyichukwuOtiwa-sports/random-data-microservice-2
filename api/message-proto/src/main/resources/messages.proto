@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package org.gxstar.randomdatatwo.api;
+
+import "google/protobuf/timestamp.proto";
+
+message PersonProto {
+  string gender = 1;
+  PersonNameProto name = 2;
+  DateOfBirthProto dob = 3;
+  string phone = 4;
+  string email = 5;
+  string cell = 6;
+  string nat = 7;
+}
+
+message PersonNameProto {
+  string title = 1;
+  string first = 2;
+  string last = 3;
+}
+
+message DateOfBirthProto {
+  google.protobuf.Timestamp date = 1;
+  int32 age = 2;
+}

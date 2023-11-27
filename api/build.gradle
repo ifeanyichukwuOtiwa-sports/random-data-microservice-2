@@ -1,0 +1,29 @@
+subprojects {
+    apply {
+        plugin("java-library")
+        plugin("com.github.johnrengelman.shadow")
+    }
+
+    dependencies {
+    }
+
+    group = "org.gxstar"
+    version = "1.0"
+
+    jar {
+        from {
+            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+    }
+
+    shadowJar {
+        archiveVersion.set('1.0')
+        archiveClassifier.set("")
+    }
+
+    tasks.named("jar") {
+        dependsOn {
+            shadowJar
+        }
+    }
+}

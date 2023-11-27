@@ -1,0 +1,51 @@
+subprojects {
+    apply {
+        plugin("java-library")
+        plugin("idea")
+        plugin("com.google.protobuf")
+    }
+
+    protobuf {
+        protoc {
+            artifact = "com.google.protobuf:protoc:3.22.3"
+        }
+        plugins {
+            grpc {
+                artifact = 'io.grpc:protoc-gen-grpc-java:1.59.0'
+            }
+        }
+        generateProtoTasks {
+            all()*.plugins {
+                grpc {
+                    option 'enable_deprecated=false'
+                }
+            }
+            ofSourceSet('main').each { task ->
+                task.plugins {
+                    grpc {
+                        outputSubDir = 'java'
+                    }
+                }
+            }
+        }
+    }
+
+    clean {
+        delete protobuf.generatedFilesBaseDir
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs 'build/generated/source/proto/main/grpc'
+                srcDirs 'build/generated/source/proto/main/java'
+            }
+        }
+    }
+
+    dependencies {
+        api "io.grpc:grpc-stub:1.59.0"
+        api "io.grpc:grpc-protobuf:1.59.0"
+        implementation('com.google.protobuf:protobuf-java:3.25.0')
+    }
+}

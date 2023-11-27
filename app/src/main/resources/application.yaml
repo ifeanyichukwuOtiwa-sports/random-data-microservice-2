@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: ${SPRING_DATABASE_USER:root}
+    password: ${SPRING_DATABASE_PASSWORD:123456}
+    url: ${SPRING_DATABASE_URL:jdbc:mysql://localhost:23306/random_individual}
+
+  kafka:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+server:
+  port: ${SERVER_PORT:18080}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

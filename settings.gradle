@@ -1,0 +1,15 @@
+rootProject.name = 'RandomDataTwo'
+
+include(
+        ":api",
+        ":api:api-proto",
+        ":api:message-proto",
+        ":app",
+        ":app:consumer",
+        ":app:grpc-server",
+        ":app:service-api",
+        ":app:service",
+        ":app:persistence",
+        ":proto-generated:service-generated",
+        ":proto-generated:message-generated"
+)

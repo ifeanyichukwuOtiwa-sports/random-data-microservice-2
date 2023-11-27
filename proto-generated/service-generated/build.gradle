@@ -1,0 +1,4 @@
+dependencies {
+    protobuf(project(":api:api-proto"))
+    compileOnly("org.apache.tomcat:annotations-api:6.0.53")
+}

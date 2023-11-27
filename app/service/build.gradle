@@ -1,0 +1,9 @@
+apply {
+    plugin("io.spring.dependency-management")
+}
+
+dependencies {
+    implementation(project(":app:service-api"))
+    implementation(project(":app:persistence"))
+    implementation("org.springframework.boot:spring-boot-starter:3.2.0")
+}
